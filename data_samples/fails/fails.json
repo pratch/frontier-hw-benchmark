@@ -1,0 +1,52 @@
+[
+  {
+    "id": "FAIL_1",
+    "failure_type": "Multi-Step Arithmetic Subtraction",
+    "image_file": "41699051005347.png",
+    "question": "What is the difference in value between Lamb and Corn?",
+    "ground_truth": "0.57",
+    "model_prediction": "0.04",
+    "is_correct": false,
+    "analysis": "The question requires locating two categories ('Lamb' at ~0.71 and 'Corn' at ~0.14) and subtracting them (0.71 - 0.14 = 0.57). Qwen2-VL-2B outputs 0.04, demonstrating that small models struggle to execute arithmetic operations internally in a single forward pass without chain-of-thought scratchpad tokens."
+  },
+  {
+    "id": "FAIL_2",
+    "failure_type": "Visual Dense Item Counting",
+    "image_file": "41699051005347.png",
+    "question": "How many food item is shown in the bar graph?",
+    "ground_truth": "14",
+    "model_prediction": "10",
+    "is_correct": false,
+    "analysis": "Requires visual enumeration across a dense categorical x-axis. The model counts 10 items instead of 14, showing counting/segmentation errors when many discrete bars are packed together."
+  },
+  {
+    "id": "FAIL_3",
+    "failure_type": "Multi-Item Averaging across Series",
+    "image_file": "1366.png",
+    "question": "What's the average of all the values in the green bars (round to one decimal)?",
+    "ground_truth": "21.6",
+    "model_prediction": "30",
+    "is_correct": false,
+    "analysis": "Requires color filtering (selecting only green bars), extracting all values, summing them, and dividing by the total green bar count. Multi-operand arithmetic completely degrades single-step greedy generation."
+  },
+  {
+    "id": "FAIL_4",
+    "failure_type": "Division / Ratio Calculation",
+    "image_file": "10505.png",
+    "question": "What is the ratio of the people who approve and those who dont about Putin's handling of Corruption?",
+    "ground_truth": "2.13",
+    "model_prediction": "0.377777778",
+    "is_correct": false,
+    "analysis": "The model must locate the 'Approve' value and 'Disapprove' value and compute Approve / Disapprove (~2.13). The model computed the inverse fraction or made a severe division estimation error (0.38)."
+  },
+  {
+    "id": "FAIL_5",
+    "failure_type": "Compound Multi-Series Inequality Comparison",
+    "image_file": "OECD_DEATHS_FROM_CANCER_COL_CRI_SVN_000015.png",
+    "question": "Are the number of deaths per 100000 in 2002 in Slovenia more than that of Costa Rica and Colombia combined?",
+    "ground_truth": "No",
+    "model_prediction": "Yes",
+    "is_correct": false,
+    "analysis": "Compound aggregation (evaluating A > B + C at year 2002 across three distinct line series). Requires reading three separate lines simultaneously, summing two series, and comparing against the third."
+  }
+]

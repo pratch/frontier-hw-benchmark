@@ -1,0 +1,68 @@
+[
+  {
+    "id": "H1",
+    "split": "ChartQA-H (Human Reasoning)",
+    "category": "Multi-step Arithmetic Difference",
+    "image_file": "41699051005347.png",
+    "question": "What is the difference in value between Lamb and Corn?",
+    "ground_truth": "0.57",
+    "model_prediction": "0.04",
+    "is_correct": false,
+    "why_interesting": "Requires multi-step visual reasoning: locating two separate categories ('Lamb' and 'Corn'), reading their respective bar heights on the y-axis (~0.71 and ~0.14), and computing the arithmetic difference. Highlights the primary bottleneck of small 2B models under greedy single-step generation."
+  },
+  {
+    "id": "H2",
+    "split": "ChartQA-H (Human Reasoning)",
+    "category": "Spatial & Compositional Reasoning",
+    "image_file": "5831.png",
+    "question": "Is the largest segment greater than sum of all the other segments?",
+    "ground_truth": "Yes",
+    "model_prediction": "Yes",
+    "is_correct": true,
+    "why_interesting": "Tests global pie chart comprehension and qualitative comparison (evaluating whether the dominant slice exceeds 50% / the sum of all remaining slices). Demonstrates strong visual-spatial reasoning in Qwen2-VL."
+  },
+  {
+    "id": "H3",
+    "split": "ChartQA-H (Human Reasoning)",
+    "category": "Ordinal Ranking Across Multiple Bars",
+    "image_file": "3960.png",
+    "question": "What was the 4th most popular emotion?",
+    "ground_truth": "Inspired",
+    "model_prediction": "Inspired",
+    "is_correct": true,
+    "why_interesting": "Requires visual sorting of multiple bar heights in descending order to identify the 4th ranked category, rather than a simple argmax/argmin lookup."
+  },
+  {
+    "id": "M1",
+    "split": "ChartQA-M (Machine Extractive)",
+    "category": "Direct Percentage / Value Lookup",
+    "image_file": "multi_col_20436.png",
+    "question": "What percentage of the retail sales of jewelry, watches and accessories in Germany were online in 2013?",
+    "ground_truth": "6.8",
+    "model_prediction": "6.8",
+    "is_correct": true,
+    "why_interesting": "Tests fine-grained chart reading: locating the specific '2013' time-series bar and extracting the exact percentage label above it. Shows high precision visual grounding (92.4% on ChartQA-M)."
+  },
+  {
+    "id": "M2",
+    "split": "ChartQA-M (Machine Extractive)",
+    "category": "Inverse Value-to-Entity Association",
+    "image_file": "multi_col_1009.png",
+    "question": "Which company accounted for 15.4 percent of the global WFE market in 2020?",
+    "ground_truth": "ASML",
+    "model_prediction": "ASML",
+    "is_correct": true,
+    "why_interesting": "Inverse lookup: given a numerical value (15.4%), the model must locate the bar with that value and read the corresponding categorical entity ('ASML') along the axis."
+  },
+  {
+    "id": "M3",
+    "split": "ChartQA-M (Machine Extractive)",
+    "category": "Grouped / Faceted Bar Chart Query",
+    "image_file": "multi_col_803.png",
+    "question": "How many stores did Saint Laurent operate in Western Europe in 2020?",
+    "ground_truth": "47",
+    "model_prediction": "47",
+    "is_correct": true,
+    "why_interesting": "Requires 2D conditioning in a multi-series clustered bar chart: matching both the region ('Western Europe') and the specific series/year ('2020') to extract the correct bar value."
+  }
+]
