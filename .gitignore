@@ -1,0 +1,21 @@
+# Environment & Virtualenvs
+venv/
+.venv/
+env/
+
+# Data & Large Archives
+data/
+*.zip
+*.tar.gz
+
+# Python Caches & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+
+# System & IDE
+.DS_Store
+.vscode/
+.idea/

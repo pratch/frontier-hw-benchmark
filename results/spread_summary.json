@@ -1,0 +1,84 @@
+{
+  "num_runs": 2,
+  "strict_mean": 72.28,
+  "strict_range": [
+    68.8,
+    75.76
+  ],
+  "strict_spread": 6.96,
+  "harness_mean": 72.28,
+  "harness_range": [
+    68.8,
+    75.76
+  ],
+  "harness_spread": 6.96,
+  "defense_claim": "\"Model Qwen/Qwen2-VL-2B-Instruct at revision 'main', fp16 on GPU 1 (RTX 3090 Ti / V100 profile), greedy, template 'concise', scored 68.80% relaxed accuracy (range [68.80%, 75.76%] over 2 meaning-preserving rewordings); the literature reports 78.5% for GPT-4V and 90.8% for Claude-3.5-Sonnet. The difference is confounded with model scale (2B vs >1T), visual encoder resolution tokens, pretraining data mixture, and chain-of-thought instruction tuning.\"",
+  "runs": [
+    {
+      "benchmark": "ChartQA (ACL 2022)",
+      "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+      "device": "cuda:0",
+      "precision": "float16",
+      "template": "concise",
+      "decoding": "greedy (do_sample=False)",
+      "seed": 42,
+      "total_samples": 250,
+      "metrics": {
+        "overall_relaxed_accuracy_strict": 68.8,
+        "overall_relaxed_accuracy_harness": 68.8,
+        "harness_gain_delta": 0.0,
+        "chartqa_human_strict": 47.2,
+        "chartqa_human_harness": 47.2,
+        "chartqa_augmented_strict": 90.4,
+        "chartqa_augmented_harness": 90.4
+      },
+      "diagnostics": {
+        "response_length_avg_tokens": 4.1,
+        "response_length_median_tokens": 4.0,
+        "response_length_max_tokens": 12,
+        "truncation_rate_percent": 0.0,
+        "elapsed_seconds": 55.59,
+        "gpu_hours": 0.0154,
+        "throughput_samples_per_sec": 4.5
+      },
+      "reported_paper_frontier_baseline": {
+        "GPT-4V_relaxed_accuracy": 78.5,
+        "Claude-3.5-Sonnet_relaxed_accuracy": 90.8,
+        "PaliGemma-3B_relaxed_accuracy": 66.8
+      }
+    },
+    {
+      "benchmark": "ChartQA (ACL 2022)",
+      "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+      "device": "cuda:0",
+      "precision": "float16",
+      "template": "direct",
+      "decoding": "greedy (do_sample=False)",
+      "seed": 42,
+      "total_samples": 2500,
+      "metrics": {
+        "overall_relaxed_accuracy_strict": 75.76,
+        "overall_relaxed_accuracy_harness": 75.76,
+        "harness_gain_delta": 0.0,
+        "chartqa_human_strict": 59.12,
+        "chartqa_human_harness": 59.12,
+        "chartqa_augmented_strict": 92.4,
+        "chartqa_augmented_harness": 92.4
+      },
+      "diagnostics": {
+        "response_length_avg_tokens": 4.41,
+        "response_length_median_tokens": 4.0,
+        "response_length_max_tokens": 20,
+        "truncation_rate_percent": 0.0,
+        "elapsed_seconds": 859.45,
+        "gpu_hours": 0.2387,
+        "throughput_samples_per_sec": 2.91
+      },
+      "reported_paper_frontier_baseline": {
+        "GPT-4V_relaxed_accuracy": 78.5,
+        "Claude-3.5-Sonnet_relaxed_accuracy": 90.8,
+        "PaliGemma-3B_relaxed_accuracy": 66.8
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "benchmark": "ChartQA (ACL 2022)",
+  "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+  "device": "cuda:0",
+  "precision": "float16",
+  "template": "direct",
+  "decoding": "greedy (do_sample=False)",
+  "seed": 42,
+  "total_samples": 2500,
+  "metrics": {
+    "overall_relaxed_accuracy_strict": 75.76,
+    "overall_relaxed_accuracy_harness": 75.76,
+    "harness_gain_delta": 0.0,
+    "chartqa_human_strict": 59.12,
+    "chartqa_human_harness": 59.12,
+    "chartqa_augmented_strict": 92.4,
+    "chartqa_augmented_harness": 92.4
+  },
+  "diagnostics": {
+    "response_length_avg_tokens": 4.41,
+    "response_length_median_tokens": 4.0,
+    "response_length_max_tokens": 20,
+    "truncation_rate_percent": 0.0,
+    "elapsed_seconds": 859.45,
+    "gpu_hours": 0.2387,
+    "throughput_samples_per_sec": 2.91
+  },
+  "reported_paper_frontier_baseline": {
+    "GPT-4V_relaxed_accuracy": 78.5,
+    "Claude-3.5-Sonnet_relaxed_accuracy": 90.8,
+    "PaliGemma-3B_relaxed_accuracy": 66.8
+  }
+}
