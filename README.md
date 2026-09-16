@@ -1,6 +1,6 @@
 # Frontier HW Benchmark: Evaluating Small VLMs on ChartQA
 
-This repository implements an evaluation harness for assessing small open-weight multimodal language models (**Qwen2-VL-2B-Instruct**) on the **ChartQA** benchmark in `fp16` on a single GPU (simulating a Volta V100 compute and memory profile).
+This repository implements an evaluation harness for assessing small open-weight multimodal language models (**Qwen2-VL-2B-Instruct**) on the **ChartQA** benchmark in `fp16` on a single GPU (**NVIDIA GeForce RTX 3090**).
 
 ---
 
@@ -10,6 +10,7 @@ This repository implements an evaluation harness for assessing small open-weight
 - **Test Set**: 2,500 questions (1,250 `ChartQA-H` Human Reasoning + 1,250 `ChartQA-M` Machine Extractive)
 - **Scorer**: Deterministic Relaxed Accuracy (5% relative error tolerance for numbers, case-insensitive exact string match for non-numeric)
 - **Model**: `Qwen/Qwen2-VL-2B-Instruct`
+- **Hardware**: Single NVIDIA RTX 3090 GPU (24GB VRAM)
 - **Precision**: `torch.float16` (Peak VRAM: 4.54 GB)
 - **Decoding**: Greedy baseline (`temperature=0.0`, `do_sample=False`, `seed=42`, `max_new_tokens=64`)
 
@@ -21,7 +22,7 @@ This repository implements an evaluation harness for assessing small open-weight
 
 | Model | Model Scale | Overall Relaxed Accuracy | Official Citation |
 | :--- | :---: | :---: | :--- |
-| **Qwen2-VL-2B-Instruct** | **2.2B** (Local, fp16) | **75.76%** | **This Work** (1x V100 profile) |
+| **Qwen2-VL-2B-Instruct** | **2.2B** (Local, fp16) | **75.76%** | **This Work** (RTX 3090) |
 | Claude 3 Opus | Frontier Closed | 80.8% | Anthropic (2024) |
 | Claude 3 Sonnet | Frontier Closed | 81.1% | Anthropic (2024) |
 | GPT-4o | Frontier Closed | 85.7% | OpenAI (2024) |
@@ -62,7 +63,7 @@ To test prompt sensitivity and compute the spread interval, two meaning-preservi
 
 ## Defense Claim
 
-> *"Model Qwen/Qwen2-VL-2B-Instruct at revision 'main', fp16 on GPU 1 (RTX 3090 Ti / V100 profile), greedy decoding, template 'direct', scored 75.76% overall relaxed accuracy (range [68.80%, 75.76%] over meaning-preserving prompt rewordings); the literature reports 80.8% for Claude 3 Opus, 81.1% for Claude 3 Sonnet, 85.7% for GPT-4o, and 90.8% for Claude 3.5 Sonnet. The difference is confounded with model scale (2.2B vs >1T), visual resolution encoder capacity, pretraining data mixture, and chain-of-thought reasoning prompting."*
+> *"Model Qwen/Qwen2-VL-2B-Instruct at revision 'main', fp16 on single GPU (NVIDIA GeForce RTX 3090), greedy decoding, template 'direct', scored 75.76% overall relaxed accuracy (range [68.80%, 75.76%] over meaning-preserving prompt rewordings); the literature reports 80.8% for Claude 3 Opus, 81.1% for Claude 3 Sonnet, 85.7% for GPT-4o, and 90.8% for Claude 3.5 Sonnet. The difference is confounded with model scale (2.2B vs >1T), visual resolution encoder capacity, pretraining data mixture, and chain-of-thought reasoning prompting."*
 
 ---
 
