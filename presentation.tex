@@ -200,22 +200,26 @@
         \small
         \begin{tabular}{@{}lcccc@{}}
             \toprule
-            \textbf{Metric / Sub-Split} & \textbf{Qwen2-VL-2B} & \textbf{PaliGemma-3B} & \textbf{GPT-4V} & \textbf{Claude 3.5 Sonnet} \\
-            & \textit{(This Work, fp16)} & \textit{(Google, 2024)} & \textit{(OpenAI / Lit.)} & \textit{(Anthropic, 2024)} \\
+            \textbf{Model} & \textbf{Type / Scale} & \textbf{ChartQA Acc.} & \textbf{Hardware Footprint} & \textbf{Citation} \\
             \midrule
-            \textbf{Overall Relaxed Accuracy} & \textbf{75.76\%} & 66.8\% & 78.5\% & \textbf{90.8\%} \\
-            --- \textit{ChartQA-H (Human Reasoning)} & \textbf{59.12\%} & --- & --- & --- \\
-            --- \textit{ChartQA-M (Machine Extractive)} & \textbf{92.40\%} & --- & --- & --- \\
-            \midrule
-            \textbf{Parameter Scale} & \textbf{2.2B} & 3B & $>1\text{T (est.)}$ & $>1\text{T (est.)}$ \\
-            \textbf{Hardware Footprint} & $\mathbf{\sim 4.5\text{ GB (1x V100)}}$ & $\sim 6\text{ GB}$ & Multi-Node Pods & Multi-Node Pods \\
+            \textbf{Qwen2-VL-2B} & \textbf{Open (2.2B, fp16)} & \textbf{75.76\%} & $\mathbf{\sim 4.5\text{ GB (1x V100)}}$ & \textbf{This Work} \\
+            Claude 3 Opus & Frontier Closed & 80.8\% & Multi-Node Pod & Anthropic (2024) \\
+            Claude 3 Sonnet & Frontier Closed & 81.1\% & Multi-Node Pod & Anthropic (2024) \\
+            GPT-4o & Frontier Closed & 85.7\% & Multi-Node Pod & OpenAI (2024) \\
+            Claude 3.5 Sonnet & Frontier Closed & \textbf{90.8\%} & Multi-Node Pod & Anthropic (2024) \\
             \bottomrule
         \end{tabular}
     \end{table}
 
     \vspace{0.1cm}
-    \centering
-    \scriptsize \textit{*Note: Anthropic \& Google officially reported aggregate test scores (90.8\% \& 66.8\%). Sub-splits were not released.}
+    \begin{tcolorbox}[colframe=secondary, title=\textbf{Qwen2-VL-2B Performance Breakdown by Sub-Split}]
+        \small
+        \begin{itemize}
+            \item \textbf{ChartQA-M (Machine Extractive)}: \textbf{92.40\%} --- Superior visual OCR and single-point grounding.
+            \item \textbf{ChartQA-H (Human Reasoning)}: \textbf{59.12\%} --- Math reasoning bottleneck under greedy decoding.
+            \item \textbf{Prompt Rewording Spread}: \textbf{$\Delta = 6.96\%$} ($[68.80\%, 75.76\%]$).
+        \end{itemize}
+    \end{tcolorbox}
 
     \vspace{0.2cm}
     \begin{columns}[T]

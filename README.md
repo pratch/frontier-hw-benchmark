@@ -15,14 +15,26 @@ This repository implements an evaluation harness for assessing small open-weight
 
 ---
 
-| Benchmark Split / Metric | Qwen2-VL-2B-Instruct (This Work) | PaliGemma-3B (Google, 2024) | GPT-4V (OpenAI / Literature) | Claude 3.5 Sonnet (Anthropic, 2024) |
-| :--- | :---: | :---: | :---: | :---: |
-| **Overall Relaxed Accuracy** | **75.76%** | 66.8% | 78.5% | **90.8%** |
-| --- *ChartQA-H (Human Reasoning)* | **59.12%** | — | — | — |
-| --- *ChartQA-M (Machine Extractive)* | **92.40%** | — | — | — |
-| **Prompt Rewording Spread** | **$\Delta = 6.96\%$** ($[68.80\%, 75.76\%]$) | — | — | — |
+## Benchmark Evaluation Results
 
-*> Note: Anthropic, Google, and OpenAI officially reported aggregate ChartQA test set scores (90.8%, 66.8%, and 78.5%). Separate Human and Machine sub-splits are not published in their official model cards.*
+### Comparison Against Frontier Models (Overall Relaxed Accuracy)
+
+| Model | Model Scale | Overall Relaxed Accuracy | Official Citation |
+| :--- | :---: | :---: | :--- |
+| **Qwen2-VL-2B-Instruct** | **2.2B** (Local, fp16) | **75.76%** | **This Work** (1x V100 profile) |
+| Claude 3 Opus | Frontier Closed | 80.8% | Anthropic (2024) |
+| Claude 3 Sonnet | Frontier Closed | 81.1% | Anthropic (2024) |
+| GPT-4o | Frontier Closed | 85.7% | OpenAI (2024) |
+| Claude 3.5 Sonnet | Frontier Closed | 90.8% | Anthropic (2024) |
+
+### Detailed Performance Breakdown for Qwen2-VL-2B-Instruct
+
+| Evaluation Split / Metric | Accuracy / Value | Samples | Description |
+| :--- | :---: | :---: | :--- |
+| **Overall Relaxed Accuracy** | **75.76%** | 2,500 | Full ChartQA test set |
+| --- **ChartQA-H (Human Reasoning)** | **59.12%** | 1,250 | Multi-step reasoning, arithmetic $\Delta$, trends |
+| --- **ChartQA-M (Machine Extractive)** | **92.40%** | 1,250 | Direct value extraction and OCR lookup |
+| **Prompt Rewording Spread** | **$\Delta = 6.96\%$** | 2,500 $\times$ 2 | Spread across `direct` (75.76%) and `concise` (68.80%) |
 
 ### Hardware & Diagnostics Telemetry
 - **Throughput**: 2.91 samples/sec
@@ -34,7 +46,7 @@ This repository implements an evaluation harness for assessing small open-weight
 
 ## Defense Claim
 
-> *"Model Qwen/Qwen2-VL-2B-Instruct at revision 'main', fp16 on GPU 1 (RTX 3090 Ti / V100 profile), greedy decoding, template 'direct', scored 75.76% overall relaxed accuracy (range [68.80%, 75.76%] over meaning-preserving prompt rewordings); the literature reports 78.5% for GPT-4V and 90.8% for Claude-3.5-Sonnet. The difference is confounded with model scale (2.2B vs >1T), visual resolution encoder capacity, pretraining data mixture, and chain-of-thought reasoning prompting."*
+> *"Model Qwen/Qwen2-VL-2B-Instruct at revision 'main', fp16 on GPU 1 (RTX 3090 Ti / V100 profile), greedy decoding, template 'direct', scored 75.76% overall relaxed accuracy (range [68.80%, 75.76%] over meaning-preserving prompt rewordings); the literature reports 80.8% for Claude 3 Opus, 81.1% for Claude 3 Sonnet, 85.7% for GPT-4o, and 90.8% for Claude 3.5 Sonnet. The difference is confounded with model scale (2.2B vs >1T), visual resolution encoder capacity, pretraining data mixture, and chain-of-thought reasoning prompting."*
 
 ---
 
