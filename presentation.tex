@@ -194,9 +194,6 @@
     \end{columns}
 \end{frame}
 
-% ------------------------------------------------------------------------------
-% Slide 5: Results & Comparison Against Literature
-% ------------------------------------------------------------------------------
 \begin{frame}{Results: Small Model vs. Published Frontier}
     \begin{table}
         \centering
@@ -204,17 +201,21 @@
         \begin{tabular}{@{}lcccc@{}}
             \toprule
             \textbf{Metric / Sub-Split} & \textbf{Qwen2-VL-2B} & \textbf{PaliGemma-3B} & \textbf{GPT-4V} & \textbf{Claude 3.5 Sonnet} \\
-            & \textit{(This Work, fp16)} & \textit{(Literature)} & \textit{(Literature)} & \textit{(Literature)} \\
+            & \textit{(This Work, fp16)} & \textit{(Google, 2024)} & \textit{(OpenAI / Lit.)} & \textit{(Anthropic, 2024)} \\
             \midrule
             \textbf{Overall Relaxed Accuracy} & \textbf{75.76\%} & 66.8\% & 78.5\% & \textbf{90.8\%} \\
-            --- \textit{ChartQA-H (Human Reasoning)} & \textbf{59.12\%} & 48.2\% & 71.4\% & 85.2\% \\
-            --- \textit{ChartQA-M (Machine Extractive)} & \textbf{92.40\%} & 85.4\% & 85.6\% & 96.4\% \\
+            --- \textit{ChartQA-H (Human Reasoning)} & \textbf{59.12\%} & --- & --- & --- \\
+            --- \textit{ChartQA-M (Machine Extractive)} & \textbf{92.40\%} & --- & --- & --- \\
             \midrule
             \textbf{Parameter Scale} & \textbf{2.2B} & 3B & $>1\text{T (est.)}$ & $>1\text{T (est.)}$ \\
             \textbf{Hardware Footprint} & $\mathbf{\sim 4.5\text{ GB (1x V100)}}$ & $\sim 6\text{ GB}$ & Multi-Node Pods & Multi-Node Pods \\
             \bottomrule
         \end{tabular}
     \end{table}
+
+    \vspace{0.1cm}
+    \centering
+    \scriptsize \textit{*Note: Anthropic \& Google officially reported aggregate test scores (90.8\% \& 66.8\%). Sub-splits were not released.}
 
     \vspace{0.2cm}
     \begin{columns}[T]

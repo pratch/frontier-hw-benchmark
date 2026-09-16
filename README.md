@@ -15,14 +15,14 @@ This repository implements an evaluation harness for assessing small open-weight
 
 ---
 
-## Results Summary
-
-| Benchmark Split / Metric | Qwen2-VL-2B-Instruct (This Work) | PaliGemma-3B (Literature) | GPT-4V (Literature) | Claude 3.5 Sonnet (Literature) |
+| Benchmark Split / Metric | Qwen2-VL-2B-Instruct (This Work) | PaliGemma-3B (Google, 2024) | GPT-4V (OpenAI / Literature) | Claude 3.5 Sonnet (Anthropic, 2024) |
 | :--- | :---: | :---: | :---: | :---: |
-| **Overall Relaxed Accuracy** | **75.76%** | 66.8% | 78.5% | 90.8% |
-| **ChartQA-H (Human Reasoning)** | **59.12%** | 48.2% | 71.4% | 85.2% |
-| **ChartQA-M (Machine Extractive)** | **92.40%** | 85.4% | 85.6% | 96.4% |
-| **Prompt Rewording Spread** | **$\Delta = 6.96\%$** ($[68.80\%, 75.76\%]$) | Unreported | Unreported | Unreported |
+| **Overall Relaxed Accuracy** | **75.76%** | 66.8% | 78.5% | **90.8%** |
+| --- *ChartQA-H (Human Reasoning)* | **59.12%** | — | — | — |
+| --- *ChartQA-M (Machine Extractive)* | **92.40%** | — | — | — |
+| **Prompt Rewording Spread** | **$\Delta = 6.96\%$** ($[68.80\%, 75.76\%]$) | — | — | — |
+
+*> Note: Anthropic, Google, and OpenAI officially reported aggregate ChartQA test set scores (90.8%, 66.8%, and 78.5%). Separate Human and Machine sub-splits are not published in their official model cards.*
 
 ### Hardware & Diagnostics Telemetry
 - **Throughput**: 2.91 samples/sec
