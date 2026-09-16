@@ -36,11 +36,27 @@ This repository implements an evaluation harness for assessing small open-weight
 | --- **ChartQA-M (Machine Extractive)** | **92.40%** | 1,250 | Direct value extraction and OCR lookup |
 | **Prompt Rewording Spread** | **$\Delta = 6.96\%$** | 2,500 $\times$ 2 | Spread across `direct` (75.76%) and `concise` (68.80%) |
 
-### Hardware & Diagnostics Telemetry
-- **Throughput**: 2.91 samples/sec
-- **Full Test Time (2,500 items)**: 859.45s (~14.3 min) $\to$ **0.2387 GPU-hours**
-- **Response Length**: Mean 4.41 tokens (Median 4, Max 20)
-- **Truncation Rate**: 0.00% (0 / 2,500)
+### Prompt Templates Used (Prompt Rewording Spread)
+
+To test prompt sensitivity and compute the spread interval, two meaning-preserving prompt templates are used:
+
+- **Direct Prompt (`--template direct`)**:
+  ```text
+  Answer the question directly using the chart. Give a short, precise answer with no extra explanation. Question: {question}
+  ```
+- **Concise Prompt (`--template concise`)**:
+  ```text
+  Look at the chart and provide only the final answer to the question: {question}
+  ```
+
+---
+
+## Summary of Findings (Presentation Takeaways)
+
+1. **Overall Performance**: `Qwen2-VL-2B-Instruct` scores **75.76%** overall relaxed accuracy on the 2,500 ChartQA test questions, showing a noticeable gap to frontier closed models (80.8% – 90.8%).
+2. **Sub-Split Asymmetry**: Extractive machine questions (`ChartQA-M`: **92.40%**) are straightforward and near saturation. The capability gap is concentrated in human reasoning questions (`ChartQA-H`: **59.12%**), which require multi-step mental calculation (averaging across bars, calculating ratios, comparing series sums) that fail under greedy single-step decoding.
+3. **Prompt Sensitivity as a Confound**: Rewording the prompt from `direct` to `concise` drops accuracy by **6.96%** (and by **11.92%** on the human reasoning split), demonstrating that prompt styling alone is a major hidden confound when benchmarking VLMs.
+4. **Presentation Deck**: Slide deck for a 4–5 min project presentation is available in [`chartqa-benchmark.pptx`](chartqa-benchmark.pptx). Selected sample questions and failure cases are documented in [`data_samples/`](data_samples/).
 
 ---
 
